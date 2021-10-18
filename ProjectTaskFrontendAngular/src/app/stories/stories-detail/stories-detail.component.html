@@ -1,0 +1,363 @@
+<div class="title row">
+  <div class="icon">
+    <i class="far fa-bookmark"></i>
+  </div>
+  <h1 class="mt-4">{{ story.storyNumber }} | {{ story.title }}</h1>
+</div>
+<div>
+  <div class="row mt-5">
+    <div class="col-md-2 btn-box">
+      <button
+        class="btn btn-itau"
+        data-toggle="modal"
+        data-target="#modalCadastro"
+      >
+        <i class="fa fa-plus"></i> Novo Cadastro
+      </button>
+    </div>
+  </div>
+
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-3 btn-box">
+      <button class="btn btn-itau" (click)="includeBCP()">
+        <i class="fas fa-table"></i> Incluir BCP
+      </button>
+    </div>
+    <div class="col-md-3 btn-box">
+      <button class="btn btn-itau" (click)="includeCodeReview()">
+        <i class="fas fa-code"></i> Incluir Code Review
+      </button>
+    </div>
+    <div class="col-md-3 btn-box">
+      <button class="btn btn-itau" (click)="includeDemo()">
+        <i class="fas fa-laptop-code"></i> Incluir Demo
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+          {{ mensagemSucesso }}
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+          {{ mensagemErro }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="alert alert-success"
+          role="alert"
+          *ngIf="mensagemSucessoTask"
+        >
+          {{ mensagemSucessoTask }}
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="mensagemErroTask">
+          {{ mensagemErroTask }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mt-5">
+      <table class="table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>IssueType</th>
+            <th>Título</th>
+            <th>Número da História</th>
+            <th class="text-center">Horas</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let task of tasks">
+          <tr>
+            <td>{{ task.issueType }}</td>
+            <td>
+              {{ task.summary }}
+            </td>
+            <td>{{ task.story.storyNumber }}</td>
+            <td class="text-center">
+              <button
+                class="btn btn-hours ml-2"
+                (click)="preparaHours(task)"
+                data-toggle="modal"
+                data-target="#modalHours"
+              >
+                <i class="fa fa-clock"></i>
+                Cadastrar Horas
+              </button>
+            </td>
+            <td class="d-flex justify-content-end">
+              <button
+                class="btn btn-info"
+                routerLink="/tasks/tasks-detail/{{ task.id }}"
+              >
+                <i class="fa fa-list"></i>
+              </button>
+              <button
+                class="btn btn-primary ml-2"
+                routerLink="/tasks/tasks-form/{{ task.id }}"
+              >
+                <i class="fa fa-edit"></i>
+              </button>
+
+              <button
+                class="btn btn-danger ml-2"
+                (click)="preparaDelecao(task)"
+                data-toggle="modal"
+                data-target="#modalDelecao"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="modalCadastro" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4>Cadastrar task para a história {{ story.storyNumber }}</h4>
+        </div>
+        <div class="modal-body">
+          <form #taskForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-3">
+                <label for="inputIssueType">IssueType</label>
+                <select
+                  [(ngModel)]="task.issueType"
+                  class="form-control"
+                  name="issueType"
+                >
+                  <option value="">Selecione...</option>
+                  <option *ngFor="let issueType of issues" [value]="issueType">
+                    {{ issueType }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label>Título</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="task.summary"
+                    name="summary"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Descrição</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="task.description"
+                    name="description"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>História</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    disabled="true"
+                    [value]="story.storyNumber"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Epic Link</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="task.epicLink"
+                    name="epicLink"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Complexity Points</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="task.complexityPoints"
+                    name="complexityPoints"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Priority</label>
+                  <select
+                    [(ngModel)]="task.priority"
+                    class="form-control"
+                    name="priority"
+                  >
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let priority of primary" [value]="priority">
+                      {{ priority }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Components</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="task.components"
+                    name="components"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Fix Version</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="task.fixVersions"
+                    name="fixVersions"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Labels</label>
+                  <select
+                    [(ngModel)]="task.labels"
+                    class="form-control"
+                    name="labels"
+                  >
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let labels of label" [value]="labels">
+                      {{ labels }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Due Data</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="task.dueDate"
+                    name="dueDate"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2 btn-box">
+                <button type="submit" class="btn btn-itau">
+                  <i class="fas fa-paper-plane"></i> Salvar
+                </button>
+              </div>
+              <div class="col-md-2 btn-box">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
+                >
+                  <i class="fas fa-arrow-alt-circle-left"></i> Voltar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalDelecao" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+        </div>
+        <div class="modal-body" *ngIf="taskSelected">
+          Confirma a deleção da task {{ task.summary }}?
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-success"
+            (click)="deletarTask()"
+            data-dismiss="modal"
+          >
+            Confirmar
+          </button>
+          <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalHours" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" *ngIf="taskSelected">
+        <div class="modal-header d-flex justify-content-center">
+          <h4>Cadastrar Hora {{ taskSelected.summary }}</h4>
+        </div>
+        <div class="modal-body d-flex justify-content-center">
+          <form #hoursForm="ngForm" (ngSubmit)="onSubmitHour()">
+            <div class="row">
+              <div class="col-md-3 d-flex flex-row">
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="taskSelected.hours"
+                  name="hours"
+                />
+                <button type="submit" class="btn btn-itau">
+                  <i class="fas fa-check"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,183 @@
+<div class="background-page">
+  <div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+      <main>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 pl-0 pr-0">
+              <div class="card shadow-lg border-0 rounded-right mt-5">
+                <div class="card-header">
+                  <h3>Planning <br />Helper</h3>
+                </div>
+                <div class="card-body">
+                  <h3 class="text-center my-4">
+                    {{
+                      cadastrando ? "Cadastro de novo usuário" : "Faça o Login"
+                    }}
+                  </h3>
+                  <div class="alert alert-danger" *ngFor="let error of errors">
+                    {{ error }}
+                  </div>
+                  <div class="alert alert-success" *ngIf="successMessage">
+                    {{ successMessage }}
+                  </div>
+                  <div class="alert alert-danger" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                  </div>
+                  <form #loginForm="ngForm" (submit)="onSubmit()">
+                    <div class="form-group">
+                      <label class="small mb-1">Login</label>
+                      <input
+                        type="text"
+                        name="email"
+                        [(ngModel)]="email"
+                        autocomplete="off"
+                        class="form-control pu-4"
+                        placeholder="Digite seu email"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label class="small mb-1">Senha</label>
+                      <input
+                        type="password"
+                        name="password"
+                        [(ngModel)]="password"
+                        class="form-control pu-4"
+                        placeholder="Digite sua senha"
+                      />
+                    </div>
+                    <div class="small link">
+                      <a
+                        href="#"
+                        *ngIf="!cadastrando"
+                        data-toggle="modal"
+                        data-target="#modalForgotPassword"
+                      >
+                        Esqueceu a senha?
+                      </a>
+                    </div>
+                  <div class="form-group" *ngIf="cadastrando">
+                    <label class="small mb-1">Nome</label>
+                    <input
+                      type="text"
+                      name="name"
+                      [(ngModel)]="name"
+                      class="form-control pu-4"
+                      placeholder="Digite seu nome"
+                    />
+                  </div>
+                    <div class="form-group" *ngIf="cadastrando">
+                      <label class="small mb-1">Pergunta</label>
+                      <input
+                        type="text"
+                        name="question"
+                        [(ngModel)]="question"
+                        class="form-control pu-4"
+                        placeholder="Digite sua pergunta de segurança"
+                      />
+                    </div>
+                    <div class="form-group" *ngIf="cadastrando">
+                      <label class="small mb-1">Resposta</label>
+                      <input
+                        type="text"
+                        name="answer"
+                        [(ngModel)]="answer"
+                        class="form-control pu-4"
+                        placeholder="Digite sua resposta de segurança"
+                      />
+                    </div>
+                    <div
+                      class="form-group align-items-center justify-content-between mt-4 mb-0 text-center btn-box"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn-itau"
+                        *ngIf="!cadastrando"
+                      >
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-itau"
+                        (click)="create()"
+                        *ngIf="cadastrando"
+                      >
+                        Cadastrar
+                      </button>
+
+                      <button
+                        type="button"
+                        (click)="cancelaCadastro()"
+                        class="btn btn-danger ml-1"
+                        *ngIf="cadastrando"
+                      >
+                        Cancelar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div class="card-footer text-center" *ngIf="!cadastrando">
+                  <div class="small">
+                    <a href="#" (click)="preparaCadastrar($event)">
+                      Não possui Usuário? Cadastre-se!
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="modalForgotPassword" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center">
+          <h4>Redefine a senha</h4>
+        </div>
+        <div class="modal-body d-flex justify-content-center">
+          <form #forgotPasswordForm="ngForm" (ngSubmit)="onSubmitForgot()">
+            <div class="row">
+              <div class="form-group">
+                <label class="small mb-1">Pergunta</label>
+                <input
+                  type="text"
+                  name="question"
+                  [(ngModel)]="question"
+                  class="form-control pu-4"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <label class="small mb-1">Resposta</label>
+                <input
+                  type="text"
+                  name="answer"
+                  [(ngModel)]="answer"
+                  class="form-control pu-4"
+                />
+              </div>
+            </div>
+            <div class="form-group btn-box">
+              <button type="submit" class="btn btn-itau">
+                <i class="fas fa-paper-plane"></i> Salvar
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger ml-2"
+                data-dismiss="modal"
+              >
+                <i class="fas fa-arrow-alt-circle-left"></i> Voltar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

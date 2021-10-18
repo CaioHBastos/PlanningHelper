@@ -1,0 +1,43 @@
+<div id="layoutSidenav_nav">
+  <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+    <div class="sb-sidenav-menu">
+      <div class="nav">
+        <div class="sb-sidenav-menu-heading"></div>
+        <a class="nav-link" routerLink="/squad/addTeam"
+          ><div class="sb-nav-link-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          Cadastre o time</a
+        >
+        <a class="nav-link" routerLink="/stories/stories-list"
+          ><div class="sb-nav-link-icon">
+            <i class="fas fa-bookmark"></i>
+          </div>
+          Histórias</a
+        >
+        <a class="nav-link" routerLink="/tasks/tasks-list"
+          ><div class="sb-nav-link-icon">
+            <i class="fas fa-clone"></i>
+          </div>
+          Todas as Tasks</a
+        >
+        <a class="nav-link" routerLink="/files/files-form"
+          ><div class="sb-nav-link-icon">
+            <i class="fas fa-download"></i>
+          </div>
+          Baixar arquivos</a
+        >
+      </div>
+    </div>
+    <div class="sb-sidenav-footer">
+      <div class="small">Usuário logado:</div>
+      {{ user.email }}
+      <a class="nav-link d-flex" (click)="logout()" href="#"
+        ><div class="sb-nav-link-icon mr-3">
+          <i class="fas fa-sign-out-alt"></i>
+        </div>
+        SignOut</a
+      >
+    </div>
+  </nav>
+</div>

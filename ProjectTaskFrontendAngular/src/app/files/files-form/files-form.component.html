@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+        *ngIf="mensagemSucesso"
+      >
+        {{ mensagemSucesso }}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        *ngIf="mensagemErro"
+      >
+        {{ mensagemErro }}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row images-box d-flex align-items-center">
+    <div class="col-md-4 d-flex justify-content-center">
+      <button
+        (click)="gerarParameterizationFile()"
+        class="btn btn-file justify-content-center"
+        download="ParameterizationFile.txt"
+      >
+        <img
+          src="../../../assets/images/parametersFile.svg"
+          alt="Gerar Jira IMporter"
+        />
+        <h3>Gerar arquivo de parâmetros</h3>
+      </button>
+    </div>
+    <div class="col-md-4 d-flex justify-content-center">
+      <button
+        (click)="gerarPokerPlanning()"
+        class="btn btn-file justify-content-center"
+        href="http://localhost:8080/task?exportPlanningPoker=true"
+        download="planningPoker.txt"
+      >
+        <img
+          src="../../../assets/images/pokerPlanning.svg"
+          alt="Gerar Poker File"
+        />
+        <h3>Gerar arquivo Poker Planning</h3>
+      </button>
+    </div>
+    <div class="col-md-4 d-flex justify-content-center">
+      <button
+        (click)="gerarJiraImporter()"
+        class="btn btn-file justify-content-center"
+        download="jiraImporter.txt"
+      >
+        <img src="../../../assets/images/jira.svg" alt="Gerar Jira IMporter" />
+        <h3>Gerar arquivo JiraImporter</h3>
+      </button>
+    </div>
+  </div>
+</div>

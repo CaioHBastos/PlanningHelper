@@ -1,0 +1,33 @@
+<div class="title row">
+  <div class="icon">
+    <i class="far fa-bookmark"></i>
+  </div>
+  <h1 class="mt-4">Task: {{ task.summary }}</h1>
+</div>
+<div class="row mt-5">
+  <div class="col-md-7">
+    <p><strong>Issue Type:</strong> {{ task.issueType }}</p>
+    <p><strong>Título:</strong> {{ task.summary }}</p>
+    <p><strong>Descrição:</strong> {{ task.description }}</p>
+    <p><strong>Horas:</strong> {{ task.hours }}</p>
+    <p><strong>Número da História:</strong> {{ task.story.storyNumber }}</p>
+    <p><strong>Epic Link:</strong> {{ task.epicLink }}</p>
+    <p><strong>Complexity Points:</strong> {{ task.complexityPoints }}</p>
+    <p>
+      <strong>Priority:</strong> {{ task.priority }} |
+      <strong>Components:</strong> {{ task.components }}
+    </p>
+    <p>
+      <strong>Fix Versions:</strong> {{ task.fixVersions }} |
+      <strong>Labels:</strong> {{ task.labels }} | <strong>Due Date:</strong>
+      {{ task.dueDate }}
+    </p>
+
+    <button type="button" class="btn btn-danger" routerLink="/tasks/tasks-list">
+      <i class="fas fa-arrow-alt-circle-left"></i> Voltar
+    </button>
+  </div>
+  <div class="col-md-5">
+    <img src="../../../assets/images/task-detail.svg" alt="Details of Task" />
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.title h1 {
+  font: 600 2rem Nunito, sans-serif;
+  color: var(--blue-dark);
+}
+
+.title {
+  margin: auto;
+  align-items: center;
+}
+
+.title svg {
+  color: var(--blue-dark);
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  background: #abcdea;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.modal-header h4 {
+  font: 600 2rem Nunito, sans-serif;
+  color: var(--blue-dark);
+  text-align: center;
+}
+
+form div input {
+}
+
+.btn-hours {
+  background: var(--blue-dark);
+  color: var(--white);
+}

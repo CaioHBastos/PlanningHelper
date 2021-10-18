@@ -1,0 +1,16 @@
+.navbar {
+  background: var(--gray-light);
+}
+
+.navbar-dark .navbar-brand {
+  color: var(--orange);
+}
+
+.sb-topnav.navbar-dark #sidebarToggle {
+  color: var(--orange);
+}
+
+.sb-topnav img {
+  width: 2rem;
+  height: 2rem;
+}

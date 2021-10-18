@@ -1,0 +1,128 @@
+<div class="title row">
+  <div class="icon">
+    <i class="far fa-clone"></i>
+  </div>
+  <h1 class="mt-4">Listagem de Tasks</h1>
+</div>
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+        {{ mensagemErro }}
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>IssueType</th>
+            <th>Título</th>
+            <th>Número da História</th>
+            <th class="text-center">Horas</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>{{ task.issueType }}</td>
+            <td>{{ task.summary }}</td>
+            <td>{{ task.story.storyNumber }}</td>
+
+            <td class="text-center">
+              <button
+                class="btn btn-hours ml-2"
+                (click)="preparaHours(task)"
+                data-toggle="modal"
+                data-target="#modalHours"
+              >
+                <i class="fa fa-clock"></i>
+                Cadastrar Horas
+              </button>
+            </td>
+            <td class="d-flex justify-content-end">
+              <button
+                class="btn btn-info"
+                routerLink="/tasks/tasks-detail/{{ task.id }}"
+              >
+                <i class="fa fa-list"></i>
+              </button>
+              <button
+                class="btn btn-primary ml-2"
+                routerLink="/tasks/tasks-form/{{ task.id }}"
+              >
+                <i class="fa fa-edit"></i>
+              </button>
+
+              <button
+                class="btn btn-danger ml-2"
+                (click)="preparaDelecao(task)"
+                data-toggle="modal"
+                data-target="#modalDelecao"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="modalDelecao" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+        </div>
+        <div class="modal-body" *ngIf="taskSelected">
+          Confirma a deleção da task {{ taskSelected.summary }}?
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-success"
+            (click)="deletarTask()"
+            data-dismiss="modal"
+          >
+            Confirmar
+          </button>
+          <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalHours" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" *ngIf="taskSelected">
+        <div class="modal-header d-flex justify-content-center">
+          <h4>Cadastrar Hora {{ taskSelected.summary }}</h4>
+        </div>
+        <div class="modal-body d-flex justify-content-center">
+          <form #hoursForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-3 d-flex flex-row">
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="taskSelected.hours"
+                  name="hours"
+                />
+                <button type="submit" class="btn btn-itau">
+                  <i class="fas fa-check"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

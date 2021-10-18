@@ -1,0 +1,51 @@
+.langing-page main {
+  min-height: 100vh;
+}
+
+.inside-box {
+  margin: auto;
+}
+
+.inside-box img {
+  width: 25rem;
+  height: 25rem;
+}
+
+h1,
+h6 {
+  text-align: center;
+}
+
+h1 {
+  font: 700 2.5rem Nunito, sans-serif;
+  color: var(--blue-dark);
+}
+
+h6 {
+  font: 700 1.5rem Nunito, sans-serif;
+  color: var(--blue-dark);
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.btnBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnBox button {
+  background: var(--orange);
+  border-radius: 0.5rem;
+  height: 3rem;
+  width: 3rem;
+}
+
+.btnBox button svg {
+  color: var(--white);
+}

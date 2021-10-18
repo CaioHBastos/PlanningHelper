@@ -1,0 +1,23 @@
+#sidenavAccordion {
+  background: var(--blue-dark);
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link {
+  color: var(--white);
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
+  color: #abcdea;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+  color: var(--white);
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon:hover {
+  color: #abcdea;
+}
+
+.sb-sidenav-footer a {
+  color: var(--white);
+}

@@ -1,0 +1,26 @@
+.btn-file {
+  width: 15rem;
+  height: 20rem;
+  border-radius: 1rem;
+  border: 1px solid #777;
+  cursor: pointer;
+}
+
+.btn-file:hover {
+  background-color: #cdcdcd;
+  box-shadow: 5px 5px 15px 5px #969696;
+}
+
+.btn-file img {
+  width: 10rem;
+  height: 10rem;
+}
+
+.btn-file h3 {
+  font: 600 1.5rem Nunito, sans-serif;
+  color: var(--blue-dark);
+}
+
+.images-box div {
+  margin-top: 8rem;
+}

@@ -1,0 +1,185 @@
+<div class="title row">
+  <div class="icon">
+    <i class="far fa-clone"></i>
+  </div>
+  <h1 class="mt-4">
+    {{ task.id ? "Editar Task" : "Cadastrar Task" }}
+  </h1>
+</div>
+<div>
+  <form #taskForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-3">
+        <label for="inputIssueType">IssueType</label>
+        <select
+          [(ngModel)]="task.issueType"
+          class="form-control"
+          name="issueType"
+        >
+          <option value="">Selecione...</option>
+          <option *ngFor="let issueType of issues" [value]="issueType">
+            {{ issueType }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-9">
+        <div class="form-group">
+          <label>Título</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="task.summary"
+            name="summary"
+          />
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Descrição</label>
+          <textarea
+            type="text"
+            class="form-control"
+            [(ngModel)]="task.description"
+            name="description"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>História</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="task.story.storyNumber"
+            name="jiraKey"
+            disabled="true"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Epic Link</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="task.epicLink"
+            name="epicLink"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Complexity Points</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="task.complexityPoints"
+            name="complexityPoints"
+          />
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Priority</label>
+          <select
+            [(ngModel)]="task.priority"
+            class="form-control"
+            name="priority"
+          >
+            <option value="">Selecione...</option>
+            <option *ngFor="let priority of primary" [value]="priority">
+              {{ priority }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Components</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="task.components"
+            name="components"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Fix Version</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="task.fixVersions"
+            name="fixVersions"
+          />
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Labels</label>
+          <select [(ngModel)]="task.labels" class="form-control" name="labels">
+            <option value="">Selecione...</option>
+            <option *ngFor="let labels of label" [value]="labels">
+              {{ labels }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Due Data</label>
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="task.dueDate"
+            name="dueDate"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 btn-box">
+        <button type="submit" class="btn btn-itau">
+          <i class="fas fa-sync-alt"></i> Atualizar
+        </button>
+      </div>
+      <div class="col-md-2 btn-box">
+        <button
+          type="button"
+          class="btn btn-danger"
+          routerLink="/tasks/tasks-list"
+        >
+          <i class="fas fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
