@@ -38,7 +38,7 @@ export class TasksService {
   }
 
   getTaskByHistory(storyNumber: string): Observable<TaskWithId[]> {
-    let params = new HttpParams().set('jiraKey', storyNumber);
+    let params = new HttpParams().set('story_number', storyNumber);
     return this.http.get<TaskWithId[]>(this.apiURL, {
       params: params,
       headers: this.reqHeader,

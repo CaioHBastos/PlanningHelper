@@ -15,6 +15,7 @@ declare var $: any;
 })
 export class StoriesDetailComponent implements OnInit {
   story: Story;
+  stories: Story[] = [];
   id: string;
   task: Task;
   issues: string[];
@@ -154,7 +155,7 @@ export class StoriesDetailComponent implements OnInit {
     this.task = {
       //id: '',
       issueType: 'Sub-Task',
-      description: '',
+      description: 'BCP da história',
       summary: 'BCP',
       hours: 0,
       issueId: 0,
@@ -183,7 +184,7 @@ export class StoriesDetailComponent implements OnInit {
     this.task = {
       //id: '',
       issueType: 'Sub-Task',
-      description: '',
+      description: 'Code Review da história',
       summary: 'Code Review',
       hours: 0,
       issueId: 0,
@@ -212,7 +213,7 @@ export class StoriesDetailComponent implements OnInit {
     this.task = {
       //id: '',
       issueType: 'Sub-Task',
-      description: '',
+      description: 'Demo da história',
       summary: 'Demo',
       hours: 0,
       issueId: 0,

@@ -20,37 +20,26 @@ public class TaskInput {
     @NotBlank
     private String summary;
 
-    @NotNull
     private Long hours;
 
-    @NotNull
     private Integer issueId;
 
-    @NotBlank
     private String epicLink;
 
-    @NotBlank
     private String complexityPoints;
 
-    @NotBlank
     private String priority;
 
-    @NotBlank
     private String components;
 
-    @NotBlank
     private String fixVersions;
 
-    @NotBlank
     private String labels;
 
-    @NotBlank
     private String dueDate;
 
-    @NotBlank
     private String team;
 
-    @NotNull
     private Long originalEstimate;
 
     @NotNull
