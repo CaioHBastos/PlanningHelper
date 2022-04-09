@@ -60,11 +60,10 @@ export class StoriesDetailComponent implements OnInit {
       );
     }
 
-    this.serviceTask
-      .getTaskByHistory(this.story.storyNumber)
-      .subscribe((response) => (this.tasks = response));
-    console.log('this.story.storyNumber');
-    console.log(this.story.storyNumber);
+    setTimeout(()=>{ this.serviceTask
+        .getTaskByHistory(this.story.storyNumber)
+        .subscribe((response) => (this.tasks = response));
+    },100)
   }
 
   onSubmit() {
